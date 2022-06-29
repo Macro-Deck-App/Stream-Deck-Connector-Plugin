@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Stream-Deck-Connector-Plugin": {
+      "commandName": "Project"
+    },
+    "Macro Deck": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Macro Deck\\Macro Deck 2.exe",
+      "commandLineArgs": "--show --log-level 0 --debug-console"
+    }
+  }
+}
