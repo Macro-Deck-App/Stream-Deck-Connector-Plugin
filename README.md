@@ -2,11 +2,13 @@
 This plugin allows you to connect your Stream Deck, Stream Deck Mini or Stream Deck XL to Macro Deck!
 
 ## Important
+- You need to own a Stream Deck to use this plugin
 - The official Stream Deck software must be closed
 - This software is independent of the official Stream Deck software. You don't even have to install it.
 
 
 ![funktionsgrafik](https://user-images.githubusercontent.com/45011179/176490015-28795388-1271-4c46-8e99-961610be5b44.png)
+
 
 ## Features
 - Independent
@@ -14,6 +16,16 @@ This plugin allows you to connect your Stream Deck, Stream Deck Mini or Stream D
 - Multiple devices connected at once
 - Animated icons
 - Short press/long press
+
+## Compatibility
+- Stream Deck original (Not tested)
+- Stream Deck mk.2 (Tested, works)
+- Stream Deck Mini (Not tested)
+- Stream Deck XL (Not tested)
+
+
+If you own a Stream Deck which is not tested, please contact me and let me know if it works
+
 
 ## Installation
 1. Connect your Stream Deck (Mini/XL)
