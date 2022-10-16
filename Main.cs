@@ -11,11 +11,11 @@ namespace MacroDeck.StreamDeckConnectorPlugin
 {
     public class Main : MacroDeckPlugin
     {
-        public Process StreamDeckConnectorService;
+        private Process _streamDeckConnectorService;
 
         public override void Enable()
         {
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(Application_ApplicationExit);
+            AppDomain.CurrentDomain.ProcessExit += Application_ApplicationExit;
 
             KillIfRunning();
 
@@ -23,7 +23,7 @@ namespace MacroDeck.StreamDeckConnectorPlugin
             {
                 Thread.Sleep(1000 * 7);
                 MacroDeckLogger.Info(this, "Starting Stream Deck connector service");
-                StreamDeckConnectorService = new Process
+                _streamDeckConnectorService = new Process
                 {
                     StartInfo = new ProcessStartInfo(Path.Combine(SuchByte.MacroDeck.MacroDeck.PluginsDirectoryPath, "MacroDeck.StreamDeckConnectorPlugin", "Macro-Deck-Stream-Deck-Connector.exe"), 
                     $"--host 127.0.0.1:{SuchByte.MacroDeck.MacroDeck.Configuration.Host_Port}")
@@ -34,16 +34,16 @@ namespace MacroDeck.StreamDeckConnectorPlugin
                         WindowStyle = ProcessWindowStyle.Hidden,
                     }
                 };
-                StreamDeckConnectorService.OutputDataReceived += P_OutputDataReceived;
-                StreamDeckConnectorService.Start();
-                MacroDeckLogger.Info(this, $"Stream Deck connector service pid: {StreamDeckConnectorService.Id}");
-                StreamDeckConnectorService.BeginOutputReadLine();
+                _streamDeckConnectorService.OutputDataReceived += P_OutputDataReceived;
+                _streamDeckConnectorService.Start();
+                MacroDeckLogger.Info(this, $"Stream Deck connector service pid: {_streamDeckConnectorService.Id}");
+                _streamDeckConnectorService.BeginOutputReadLine();
             });
         }
 
         private void KillIfRunning()
         {
-            Process[] processes = Process.GetProcessesByName("Macro-Deck-Stream-Deck-Connector");
+            var processes = Process.GetProcessesByName("Macro-Deck-Stream-Deck-Connector");
             if (processes.Length == 0) return;
             MacroDeckLogger.Info(this, $"Stream Deck connector service is already running. Killing process...");
             foreach (var process in processes)
@@ -54,7 +54,7 @@ namespace MacroDeck.StreamDeckConnectorPlugin
 
         private void Application_ApplicationExit(object sender, EventArgs e)
         {
-            StreamDeckConnectorService?.Kill();
+            _streamDeckConnectorService?.Kill();
         }
 
         private void P_OutputDataReceived(object sender, DataReceivedEventArgs e)

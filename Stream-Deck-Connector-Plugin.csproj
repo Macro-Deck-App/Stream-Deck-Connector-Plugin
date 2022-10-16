@@ -9,7 +9,10 @@
 	  <Authors>SuchByte</Authors>
 	  <Company>Macro Deck</Company>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <Version>1.1.0</Version>
+	  <Version>1.2.0</Version>
+	  <PackageVersion>1.2.0</PackageVersion>
+	  <AssemblyVersion>1.2.0</AssemblyVersion>
+	  <FileVersion>1.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,28 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Macro-Deck-Stream-Deck-Connector.deps.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Macro-Deck-Stream-Deck-Connector.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Microsoft.Win32.SystemEvents.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="System.CodeDom.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="System.Management.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="System.Reactive.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="System.Security.Principal.Windows.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Websocket.Client.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
