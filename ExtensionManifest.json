@@ -4,7 +4,7 @@
   "author": "Macro Deck",
   "repository": "https://github.com/SuchByte/Macro-Deck-Media-Controls-Plugin",
   "packageId": "MacroDeck.StreamDeckConnectorPlugin",
-  "version": "1.2.0",
-  "target-plugin-api-version": 35,
+  "version": "1.2.1",
+  "target-plugin-api-version": 36,
   "dll": "Stream Deck Connector.dll"
 }
