@@ -7,59 +7,66 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MacroDeck.StreamDeckConnectorPlugin
+namespace MacroDeck.StreamDeckConnectorPlugin;
+
+public class Main : MacroDeckPlugin
 {
-    public class Main : MacroDeckPlugin
+    private Process _streamDeckConnectorService;
+
+    public Main()
     {
-        private Process _streamDeckConnectorService;
+        AppDomain.CurrentDomain.ProcessExit += Application_ApplicationExit;
+        KillIfRunning();
+        SuchByte.MacroDeck.MacroDeck.OnMacroDeckLoaded += MacroDeck_OnMacroDeckLoaded;
+    }
 
-        public override void Enable()
+    private void MacroDeck_OnMacroDeckLoaded(object sender, EventArgs e)
+    {
+        Start();
+    }
+
+    public override void Enable()
+    {
+    }
+
+    private void Start()
+    {
+        MacroDeckLogger.Info(this, "Starting Stream Deck connector service");
+        _streamDeckConnectorService = new Process
         {
-            AppDomain.CurrentDomain.ProcessExit += Application_ApplicationExit;
-
-            KillIfRunning();
-
-            Task.Run(() =>
+            StartInfo = new ProcessStartInfo(Path.Combine(SuchByte.MacroDeck.MacroDeck.ApplicationPaths.PluginsDirectoryPath, "MacroDeck.StreamDeckConnectorPlugin", "Macro-Deck-Stream-Deck-Connector.exe"),
+                $"--host 127.0.0.1:{SuchByte.MacroDeck.MacroDeck.Configuration.HostPort}")
             {
-                Thread.Sleep(1000 * 7);
-                MacroDeckLogger.Info(this, "Starting Stream Deck connector service");
-                _streamDeckConnectorService = new Process
-                {
-                    StartInfo = new ProcessStartInfo(Path.Combine(SuchByte.MacroDeck.MacroDeck.PluginsDirectoryPath, "MacroDeck.StreamDeckConnectorPlugin", "Macro-Deck-Stream-Deck-Connector.exe"), 
-                    $"--host 127.0.0.1:{SuchByte.MacroDeck.MacroDeck.Configuration.Host_Port}")
-                    {
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        CreateNoWindow = true,
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                    }
-                };
-                _streamDeckConnectorService.OutputDataReceived += P_OutputDataReceived;
-                _streamDeckConnectorService.Start();
-                MacroDeckLogger.Info(this, $"Stream Deck connector service pid: {_streamDeckConnectorService.Id}");
-                _streamDeckConnectorService.BeginOutputReadLine();
-            });
-        }
-
-        private void KillIfRunning()
-        {
-            var processes = Process.GetProcessesByName("Macro-Deck-Stream-Deck-Connector");
-            if (processes.Length == 0) return;
-            MacroDeckLogger.Info(this, $"Stream Deck connector service is already running. Killing process...");
-            foreach (var process in processes)
-            {
-                process.Kill();
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden,
             }
-        }
+        };
+        _streamDeckConnectorService.OutputDataReceived += P_OutputDataReceived;
+        _streamDeckConnectorService.Start();
+        MacroDeckLogger.Info(this, $"Stream Deck connector service pid: {_streamDeckConnectorService.Id}");
+        _streamDeckConnectorService.BeginOutputReadLine();
+    }
 
-        private void Application_ApplicationExit(object sender, EventArgs e)
+    private void KillIfRunning()
+    {
+        var processes = Process.GetProcessesByName("Macro-Deck-Stream-Deck-Connector");
+        if (processes.Length == 0) return;
+        MacroDeckLogger.Info(this, $"Stream Deck connector service is already running. Killing process...");
+        foreach (var process in processes)
         {
-            _streamDeckConnectorService?.Kill();
+            process.Kill();
         }
+    }
 
-        private void P_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            MacroDeckLogger.Info(this, e.Data);
-        }
+    private void Application_ApplicationExit(object sender, EventArgs e)
+    {
+        _streamDeckConnectorService?.Kill();
+    }
+
+    private void P_OutputDataReceived(object sender, DataReceivedEventArgs e)
+    {
+        MacroDeckLogger.Info(this, e.Data);
     }
 }
