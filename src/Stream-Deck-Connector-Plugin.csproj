@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>MacroDeck.StreamDeckConnectorPlugin</RootNamespace>
+	<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <AssemblyName>Stream Deck Connector</AssemblyName>
+	  <Authors>SuchByte</Authors>
+	  <Company>Macro Deck</Company>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <Nullable>enable</Nullable>
+      <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+      <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Macro Deck 2">
+      <HintPath>C:\Program Files\Macro Deck\Macro Deck 2.dll</HintPath>		<Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;C:\Users\Manuel\AppData\Roaming\Macro Deck\plugins\MacroDeck.StreamDeckConnectorPlugin\$(TargetName).dll&quot;" />
+  </Target>
+
+</Project>
