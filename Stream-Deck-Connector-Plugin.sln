@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CB706129-30CC-443A-93A0-82279BDA7399}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stream-Deck-Connector-Plugin", "src\Stream-Deck-Connector-Plugin.csproj", "{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stream-Deck-Connector-Plugin", "Stream-Deck-Connector-Plugin.csproj", "{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{A52DC4FB-91AD-47F6-BBD4-D6A21C740FB8}"
 	ProjectSection(SolutionItems) = preProject
