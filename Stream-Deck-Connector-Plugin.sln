@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CB706129-30CC-443A-93A0-82279BDA7399}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stream-Deck-Connector-Plugin", "src\Stream-Deck-Connector-Plugin.csproj", "{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{A52DC4FB-91AD-47F6-BBD4-D6A21C740FB8}"
+	ProjectSection(SolutionItems) = preProject
+		ExtensionManifest.json = ExtensionManifest.json
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Debug|x64.ActiveCfg = Debug|x64
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Debug|x64.Build.0 = Debug|x64
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Release|x64.ActiveCfg = Release|x64
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4BEEC5D5-4DDC-407A-96A0-A0FED4D254A8} = {CB706129-30CC-443A-93A0-82279BDA7399}
+	EndGlobalSection
+EndGlobal
